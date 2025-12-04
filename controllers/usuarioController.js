@@ -5,14 +5,18 @@ export default class UsuarioController {
 
  static list = async (req, res) => {
   try {
-    const { q } = req.query
-    const filtro = q ? { nome: { $regex: q, $options: 'i' } } : {}
+    const busca = req.query.busca || ""
+const filtro = busca ? { nome: { $regex: busca, $options: 'i' } } : {}
+
     const usuarios = await Usuario.find(filtro).sort({ nome: 1 })
 
-    res.render('usuario/lst', {
-      usuarios,
-      busca: q || ""
-    })
+   res.render('usuario/lst', {
+  page: "usuario",
+
+  usuarios,
+  busca
+})
+
   } catch (err) {
     console.error(err)
     res.status(500).send('Erro')

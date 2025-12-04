@@ -10,6 +10,10 @@ const upload = multer({ storage });
 
 
 
+
+router.get('/lstcliente', LancheController.listCliente);
+
+
 router.get("/", LancheController.listar);
 
 router.get("/add", LancheController.openAdd);

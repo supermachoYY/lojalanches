@@ -15,14 +15,13 @@
 </form>
 
 
-<a href="/lanche/add" class="btn btn-success mb-3">+ Adicionar Lanche</a>
-<a href="/lanche/lstcliente" class="btn btn-info mb-3">Ver como Cliente</a>
+
 
 
 <table class="table table-striped">
 <thead>
 <tr>
-<th>Imagem</th>
+<th>Lanche</th>
 <th>Nome</th>
 <th>Preço</th>
 </tr>
@@ -41,11 +40,10 @@
 <td>R$ <%= Number(l.preco).toFixed(2) %></td>
 <td><%= l.categoria %></td>
 <td>
-<a href="/lanche/edit/<%= l._id %>" class="btn btn-warning btn-sm">Editar</a>
-<a href="/lanche/delete/<%= l._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Excluir este lanche?')">Excluir</a>
-<form action="/pedido/add/<%= l._id %>" method="POST" style="display:flex; gap:5px; align-items:center;">
+
+<form action="/pedido/pedidoclientelst/<%= l._id %>" method="POST" style="display:flex; gap:5px;">
   <input type="number" name="quantidade" value="1" min="1" class="form-control" style="width:80px;">
-  <button type="submit" class="btn btn-primary btn-sm">Fazer Pedido</button>
+  <button class="btn btn-primary btn-sm">Fazer Pedido</button>
 </form>
 
 </td>

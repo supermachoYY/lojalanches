@@ -1,29 +1,34 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-  <h1 class="title">Lista de Pedidos</h1>
+  <h1 class="title mb-4">Lista de Pedidos</h1>
 
-  <!-- FILTROS -->
-  <form class="search-bar" method="get" action="/pedido">
-    <input 
-      type="text" 
-      name="busca" 
-      value="<%= busca %>" 
-      placeholder="Buscar por nome do usuário..."
-    >
+  <!-- FILTRO -->
+  <form method="GET" action="/pedido/lst" class="row g-2 mb-4">
 
+    <div class="col-md-6">
+      <input type="text" 
+             name="busca" 
+             class="form-control" 
+             placeholder="Buscar por nome do lanche" 
+             value="<%= busca %>">
+    </div>
 
-    <button type="submit">Filtrar</button>
+    
+
+    <div class="col-md-3">
+      <button class="btn btn-primary w-100">Filtrar</button>
+    </div>
+
   </form>
 
+  <!-- TABELA -->
   <table class="table">
     <thead>
       <tr>
         <th>Usuário</th>
         <th>Itens</th>
         <th>Total</th>
-        <th>Status</th>
-        <th>Data</th>
         <th>Ações</th>
       </tr>
     </thead>
@@ -31,42 +36,35 @@
     <tbody>
       <% pedidos.forEach(p => { %>
         <tr>
-          <td><%= p.usuario ? p.usuario.nome : "Usuário Removido" %></td>
+          <td><%= p.usuario ? p.usuario.nome : "Usuário removido" %></td>
 
           <td>
             <% p.itens.forEach(i => { %>
               <div>
-                <strong><%= i.lanche ? i.lanche.nome : "Lanche removido" %></strong> —
-                Qtd: <%= i.quantidade %> —
-                R$ <%= i.subtotal.toFixed(2) %>
+                <strong><%= i.lanche ? i.lanche.nome : "Lanche removido" %></strong>
+                — Qtd: <%= i.quantidade %>
               </div>
             <% }) %>
           </td>
 
           <td>R$ <%= p.total.toFixed(2) %></td>
 
-          <td class="status <%= p.status %>">
-            <%= p.status.charAt(0).toUpperCase() + p.status.slice(1) %>
-          </td>
-
-          <td><%= p.data.toLocaleDateString() %></td>
-
           <td>
-            <a href="/pedido/view/<%= p._id %>" class="btn btn-view">Ver</a>
-            <a href="/pedido/edit/<%= p._id %>" class="btn btn-edit">Editar</a>
-            <a href="/pedido/delete/<%= p._id %>" 
+            <a href="/pedido/delete/<%= p._id %>"
                onclick="return confirm('Excluir pedido definitivamente?')" 
-               class="btn btn-delete">Excluir</a>
+               class="btn btn-danger btn-sm">Excluir</a>
           </td>
         </tr>
       <% }) %>
 
       <% if (pedidos.length === 0) { %>
       <tr>
-        <td colspan="6" class="empty">Nenhum pedido encontrado.</td>
+        <td colspan="4" class="text-center text-muted">Nenhum pedido encontrado.</td>
       </tr>
       <% } %>
+
     </tbody>
+
   </table>
 </div>
 

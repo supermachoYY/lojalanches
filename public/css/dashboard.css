@@ -1,38 +1,55 @@
-/* ===========================
-   DASHBOARD
-=========================== */
-
-.section-title {
-  color: var(--verde-ifsul);
-  font-weight: 700;
-  margin-top: 25px;
-  border-left: 4px solid var(--verde-ifsul);
-  padding-left: 8px;
+/* Verde oficial do IFSul */
+:root {
+  --ifsul-green: #006837;
+  --ifsul-light-green: #00964A;
+  --ifsul-text-light: #ffffff;
 }
 
-.dashboard-card {
-  background: var(--branco);
-  border-left: 5px solid var(--verde-ifsul);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
-  text-align: center;
+/* Navbar */
+.ifsul-navbar {
+  background-color: var(--ifsul-green) !important;
+  padding: 0.7rem 1rem;
 }
 
-.dashboard-card h4 {
-  font-size: 18px;
-  color: var(--verde-ifsul);
-  font-weight: 700;
-  margin-bottom: 10px;
+.ifsul-navbar .navbar-brand,
+.ifsul-navbar .nav-link,
+.ifsul-navbar .navbar-text {
+  color: var(--ifsul-text-light) !important;
+  font-weight: 500;
+  font-size: 1.05rem;
 }
 
-.dashboard-card .value {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--cinza-escuro);
+/* Link ativo */
+.ifsul-navbar .nav-link.active {
+  color: #ffffff !important;
+  border-bottom: 2px solid var(--ifsul-light-green);
 }
 
-.quick-buttons a {
-  margin-right: 12px;
-  margin-top: 8px;
+/* Hover */
+.ifsul-navbar .nav-link:hover {
+  color: #e9ffe9 !important;
+}
+
+/* Botão login/logout */
+.ifsul-btn {
+  border-radius: 6px;
+  background-color: var(--ifsul-light-green);
+  border: none;
+  color: white !important;
+  padding: 5px 14px;
+  transition: 0.2s;
+}
+
+.ifsul-btn:hover {
+  background-color: #00b55a;
+}
+
+/* Logo */
+.ifsul-logo {
+  height: 36px;
+}
+
+/* Mobile */
+.navbar-toggler {
+  background-color: #fff;
 }

@@ -10,4 +10,6 @@ router.get('/delete/:id', UsuarioController.delete)
 router.get('/login', UsuarioController.openLogin)
 router.post('/login', UsuarioController.login)
 router.get('/logout', UsuarioController.logout)
+
+
 export default router

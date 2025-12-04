@@ -4,20 +4,20 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 // Importar rotas
-import usuarioRoutes from '../routes/usuarioRoutes.js'
-import pedidoRoutes from '../routes/pedidoRoutes.js'
-import pagamentoRoutes from '../routes/pagamentoRoutes.js'
-import adminRoutes from '../routes/adminRoutes.js'
-import lancheRoutes from '../routes/lancheRoutes.js'
+import usuarioRoutes from './routes/usuarioRoutes.js'
+import pedidoRoutes from './routes/pedidoRoutes.js'
+import pagamentoRoutes from './routes/pagamentoRoutes.js'
+import adminRoutes from './routes/adminRoutes.js'
+import lancheRoutes from './routes/lancheRoutes.js'
 
 const app = express()
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Configurações
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '../views'))
+app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Conexão MongoDB
 const uri = 'mongodb+srv://joaogarcia:123@cluster0.esobk.mongodb.net/?appName=Cluster0'

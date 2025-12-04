@@ -47,8 +47,6 @@
                     <th>Usuário</th>
                     <th>Itens</th>
                     <th>Total</th>
-                    <th>Status</th>
-                    <th>Data</th>
                 </tr>
             </thead>
 
@@ -66,8 +64,7 @@
                         </td>
 
                         <td>R$ <%= p.total.toFixed(2) %></td>
-                        <td><%= p.status %></td>
-                        <td><%= p.data.toLocaleDateString() %></td>
+
                     </tr>
                 <% }) %>
             </tbody>
@@ -84,7 +81,7 @@
         <a href="/usuario/add" class="btn btn-success">👤 Adicionar Usuário</a>
         <a href="/lanche" class="btn btn-outline-success">🍔 Listar Lanches</a>
         <a href="/usuario" class="btn btn-outline-success">📋 Listar Usuários</a>
-        <a href="/pedido" class="btn btn-outline-success">🛒 Ver Pedidos</a>
+        <a href="/pedido/lst" class="btn btn-outline-success">🛒 Ver Pedidos</a>
 
     </div>
 

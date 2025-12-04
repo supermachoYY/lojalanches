@@ -2,7 +2,7 @@ import Lanche from "../models/lanche.js";
 
 export default class LancheController {
 
-  // LISTAR + BUSCA + FILTRO
+  // LISTAR ADMIN
   static async listar(req, res) {
     try {
       const busca = req.query.busca || "";
@@ -22,6 +22,7 @@ export default class LancheController {
       const categorias = await Lanche.distinct("categoria");
 
       res.render("lanche/lst", {
+        page: "lanche",
         lanches,
         busca,
         categoria,
@@ -34,14 +35,25 @@ export default class LancheController {
     }
   }
 
-  // FORM ADD
-  static async openAdd(req, res) {
-    const categorias = await Lanche.distinct("categoria");
-    res.render("lanche/add", {
-      categorias
-    });
-  }
+  // LISTA VISUAL DO CLIENTE
+  static async listCliente(req, res) {
+    try {
+      const busca = req.query.busca || "";
+      const filtro = busca ? { nome: { $regex: busca, $options: "i" } } : {};
 
+      const lanches = await Lanche.find(filtro).sort({ nome: 1 });
+
+      res.render("lanche/lstcliente", {
+        page: "cliente",
+        lanches,
+        busca
+      });
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Erro ao listar para cliente");
+    }
+  }
 
   // ADD
   static async add(req, res) {
@@ -52,7 +64,7 @@ export default class LancheController {
         nome,
         preco,
         categoria,
-        imagem: req.file.buffer
+        imagem: req.file?.buffer
       });
 
       res.redirect("/lanche");
@@ -63,21 +75,18 @@ export default class LancheController {
     }
   }
 
+  // FORM ADD
+  static async openAdd(req, res) {
+    const categorias = await Lanche.distinct("categoria");
+    res.render("lanche/add", { categorias });
+  }
+
   // FORM EDIT
   static async openEdit(req, res) {
-    try {
-      const lanche = await Lanche.findById(req.params.id);
-      const categorias = await Lanche.distinct("categoria");
+    const lanche = await Lanche.findById(req.params.id);
+    const categorias = await Lanche.distinct("categoria");
 
-      res.render("lanche/edit", {
-        lanche,
-        categorias
-      });
-
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Erro ao abrir edição");
-    }
+    res.render("lanche/edit", { lanche, categorias });
   }
 
   // EDIT
@@ -86,10 +95,7 @@ export default class LancheController {
       const { nome, preco, categoria } = req.body;
 
       const update = { nome, preco, categoria };
-
-      if (req.file) {
-        update.imagem = req.file.filename;
-      }
+      if (req.file) update.imagem = req.file.buffer;
 
       await Lanche.findByIdAndUpdate(req.params.id, update);
       res.redirect("/lanche");

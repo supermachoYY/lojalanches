@@ -4,13 +4,10 @@
   <h1 class="title">Usuários Cadastrados</h1>
 
   <form method="get" action="/usuario" class="search-bar">
-    <input 
-      type="text" 
-      name="busca" 
-      value="<%= busca %>" 
-      placeholder="Pesquisar por nome..."
-    >
-    <button type="submit">Buscar</button>
+    <input type="text" name="busca" class="form-control" placeholder="Buscar por nome" value="<%= busca %>">
+    <div class="col-md-3">
+<button class="btn btn-primary w-100">Filtrar</button>
+</div>
   </form>
 
   <div class="actions">
