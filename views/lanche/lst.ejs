@@ -1,0 +1,52 @@
+<!-- views/lanche/lst.ejs -->
+ <%- include('../partials/header') %>
+<div class="container mt-4">
+<h1 class="mb-4">Lanches</h1>
+
+
+<form method="GET" action="/lanche" class="row g-2 mb-4">
+<div class="col-md-5">
+<input type="text" name="busca" class="form-control" placeholder="Buscar por nome" value="<%= busca %>">
+</div>
+
+<div class="col-md-3">
+<button class="btn btn-primary w-100">Filtrar</button>
+</div>
+</form>
+
+
+<a href="/lanche/add" class="btn btn-success mb-3">+ Adicionar Lanche</a>
+
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Imagem</th>
+<th>Nome</th>
+<th>Preço</th>
+</tr>
+</thead>
+<tbody>
+<% lanches.forEach(l => { %>
+<tr>
+<td>
+<% if (l.imagem) { %>
+<img src="<%=l.imagem%>" width="150" height="150">
+<% } else { %>
+<span class="text-muted">Sem imagem</span>
+<% } %>
+</td>
+<td><%= l.nome %></td>
+<td>R$ <%= Number(l.preco).toFixed(2) %></td>
+<td><%= l.categoria %></td>
+<td>
+<a href="/lanche/edit/<%= l._id %>" class="btn btn-warning btn-sm">Editar</a>
+<a href="/lanche/delete/<%= l._id %>" class="btn btn-danger btn-sm" onclick="return confirm('Excluir este lanche?')">Excluir</a>
+</td>
+</tr>
+<% }) %>
+</tbody>
+</table>
+</div>
+
+<%- include('../partials/footer') %>

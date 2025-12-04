@@ -1,0 +1,93 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4">
+
+    <h1 class="mb-4">Dashboard - Lanchonete</h1>
+
+    <section class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card shadow p-3 text-center">
+                <h2>Usuários</h2>
+                <p class="display-6"><%= totalUsuarios %></p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3 text-center">
+                <h2>Lanches</h2>
+                <p class="display-6"><%= totalLanches %></p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3 text-center">
+                <h2>Pedidos</h2>
+                <p class="display-6"><%= totalPedidos %></p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card shadow p-3 text-center">
+                <h2>Total vendido</h2>
+                <p class="display-6">R$ <%= totalVendido.toFixed(2) %></p>
+            </div>
+        </div>
+
+    </section>
+
+    <hr>
+
+    <h2 class="mt-4">Últimos pedidos</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover mt-3">
+            <thead class="table-success">
+                <tr>
+                    <th>Usuário</th>
+                    <th>Itens</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% ultimosPedidos.forEach(p => { %>
+                    <tr>
+                        <td><%= p.usuario ? p.usuario.nome : "Usuário removido" %></td>
+
+                        <td>
+                            <% p.itens.forEach(i => { %>
+                                <div>
+                                    • <%= i.lanche ? i.lanche.nome : "Lanche removido" %> (x<%= i.quantidade %>)
+                                </div>
+                            <% }) %>
+                        </td>
+
+                        <td>R$ <%= p.total.toFixed(2) %></td>
+                        <td><%= p.status %></td>
+                        <td><%= p.data.toLocaleDateString() %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <h2 class="mt-4">Atalhos rápidos</h2>
+
+    <div class="d-flex flex-wrap gap-3 mt-3">
+
+        <a href="/lanche/add" class="btn btn-success">➕ Adicionar Lanche</a>
+        <a href="/usuario/add" class="btn btn-success">👤 Adicionar Usuário</a>
+        <a href="/lanche" class="btn btn-outline-success">🍔 Listar Lanches</a>
+        <a href="/usuario" class="btn btn-outline-success">📋 Listar Usuários</a>
+        <a href="/pedido" class="btn btn-outline-success">🛒 Ver Pedidos</a>
+
+    </div>
+
+</div>
+
+<%- include('../partials/footer') %>

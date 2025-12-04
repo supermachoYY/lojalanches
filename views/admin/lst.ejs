@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Painel do Administrador</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      background: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+
+    th {
+      background: #555;
+      color: white;
+    }
+
+    tr:hover {
+      background: #fafafa;
+    }
+
+    a.botao {
+      padding: 6px 12px;
+      background: #0066ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    a.botao:hover {
+      background: #004ecc;
+    }
+
+    .delete {
+      background: #d9534f;
+    }
+
+    .delete:hover {
+      background: #b52b27;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= USUÁRIOS ================== -->
+  <h1>Usuários</h1>
+  <a href="/admin/add" class="botao">➕ Novo Usuário</a>
+
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </tr>
+
+    <% usuarios.forEach(u=> { %>
+      <tr>
+        <td>
+          <%= u.nome %>
+        </td>
+        <td>
+          <%= u.email %>
+        </td>
+        <td>
+          <a class="botao" href="/admin/edit/<%= u._id %>">Editar</a>
+          <a class="botao delete" href="/admin/delete/<%= u._id %>">Excluir</a>
+        </td>
+      </tr>
+      <% }) %>
+  </table>
+
+  <!-- ================= LANCHES ================== -->
+  <h1>Lanches Cadastrados</h1>
+
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th>Categoria</th>
+      <th>Ações</th>
+    </tr>
+
+    <% lanches.forEach(l=> { %>
+      <tr>
+        <td>
+          <%= l.nome %>
+        </td>
+        <td>R$ <%= l.preco.toFixed(2) %>
+        </td>
+        <td>
+          <%= l.categoria %>
+        </td>
+        <td>
+          <a class="botao delete" href="/lanche/delete/<%= l._id %>">Excluir</a>
+        </td>
+      </tr>
+      <% }) %>
+  </table>
+
+  <!-- ================= PEDIDOS ================== -->
+  <h1>Pedidos</h1>
+
+  <table>
+    <tr>
+      <th>Usuário</th>
+      <th>Valor Total</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+
+    <% pedido.forEach(p=> { %>
+      <tr>
+        <td>
+          <%= p.usuario ? p.usuario.nome : 'Usuário removido' %>
+        </td>
+        <td>R$ <%= p.valorTotal.toFixed(2) %>
+        </td>
+        <td>
+          <%= p.status %>
+        </td>
+        <td>
+          <a class="botao" href="/pedido/edit/<%= p._id %>">Editar</a>
+          <a class="botao delete" href="/pedido/delete/<%= p._id %>">Excluir</a>
+        </td>
+      </tr>
+      <% }) %>
+  </table>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<h1>Novo Pedido</h1>
+
+<% let lancheSelecionado=null; if (typeof produtoId !=="undefined" ) { lancheSelecionado=lanches.find(l=>
+  l._id.toString() === produtoId);
+  }
+  %>
+
+  <form action="/pedido/add" method="post">
+
+    <!-- SELECIONAR USUÁRIO -->
+    <div>
+      <label>Usuário:</label>
+      <select name="usuario" required>
+        <option value="">Selecione...</option>
+        <% usuarios.forEach(u=> { %>
+          <option value="<%= u._id %>">
+            <%= u.nome %>
+          </option>
+          <% }) %>
+      </select>
+    </div>
+
+    <hr>
+
+    <h3>Itens do Pedido</h3>
+
+    <!-- ITEM PRINCIPAL (vindo do botão da lista de lanches) -->
+    <div style="border: 1px solid #ccc; padding:10px; margin-bottom:10px;">
+      <label>Produto:</label>
+      <select name="itens[0][produtoId]" required>
+
+        <% if (lancheSelecionado) { %>
+          <option value="<%= lancheSelecionado._id %>">
+            <%= lancheSelecionado.nome %> (pré-selecionado)
+          </option>
+          <% } %>
+
+            <% lanches.forEach(l=> { %>
+              <option value="<%= l._id %>">
+                <%= l.nome %>
+              </option>
+              <% }) %>
+      </select>
+
+      <label>Quantidade:</label>
+      <input type="number" name="itens[0][quantidade]" value="1" min="1" required>
+    </div>
+
+    <button type="submit">Salvar Pedido</button>
+
+  </form>

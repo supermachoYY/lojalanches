@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Início</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1><%= sucesso || "Bem-vindo à Lanchonete Escolar 🍔" %></h1>
+
+  <nav>
+    <a href="/lanche">Lanches</a> |
+    <a href="/pedido">Pedidos</a> |
+    <a href="/pagamento">Pagamentos</a> |
+    <a href="/admin">Admin</a> |
+    <% if (usuario) { %>
+      <span>👤 <%= usuario.nome %></span>
+    <% } else { %>
+      <a href="/usuario/login">Login</a>
+    <% } %>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<h1>Editar Pedido</h1>
+
+<form action="/pedido/edit/<%= pedido._id %>" method="post">
+  <input type="hidden" name="id" value="<%= pedido._id %>">
+  <label>Usuário:</label>
+  <input type="text" name="usuario" value="<%= pedido.usuario %>">
+
+  <label>Data:</label>
+  <input type="date" name="data" value="<%= pedido.data %>">
+
+  <label>Total:</label>
+  <input type="number" name="total" step="0.01" value="<%= pedido.total %>">
+
+  <button type="submit">Atualizar</button>
+</form>

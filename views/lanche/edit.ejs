@@ -1,0 +1,46 @@
+<!-- views/lanche/edit.ejs -->
+ <%- include('../partials/header') %>
+<div class="container mt-4">
+<h1 class="mb-4">Editar Lanche</h1>
+
+
+<form action="/lanche/edit/<%= lanche._id %>" method="POST" enctype="multipart/form-data" class="row g-3">
+<div class="col-md-6">
+<label class="form-label">Nome</label>
+<input type="text" name="nome" class="form-control" value="<%= lanche.nome %>" required>
+</div>
+
+
+<div class="col-md-3">
+<label class="form-label">Preço</label>
+<input type="number" name="preco" step="0.01" class="form-control" value="<%= lanche.preco %>" required>
+</div>
+
+
+
+
+
+<div class="col-md-12">
+<label class="form-label">Imagem Atual</label><br>
+<% if (lanche.imagem) { %>
+<img src="<%=lanche.imagem%>" width="150" height="150">
+<% } else { %>
+<span class="text-muted">Sem imagem</span>
+<% } %>
+</div>
+
+
+<div class="col-md-12">
+<label class="form-label">Alterar Imagem</label>
+<input type="file" name="imagem" class="form-control">
+</div>
+
+
+<div class="col-md-12">
+<button class="btn btn-primary">Salvar Alterações</button>
+<a href="/lanche" class="btn btn-secondary">Voltar</a>
+</div>
+</form>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <h1 class="title">Lista de Pedidos</h1>
+
+  <!-- FILTROS -->
+  <form class="search-bar" method="get" action="/pedido">
+    <input 
+      type="text" 
+      name="busca" 
+      value="<%= busca %>" 
+      placeholder="Buscar por nome do usuário..."
+    >
+
+
+    <button type="submit">Filtrar</button>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Usuário</th>
+        <th>Itens</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Data</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% pedidos.forEach(p => { %>
+        <tr>
+          <td><%= p.usuario ? p.usuario.nome : "Usuário Removido" %></td>
+
+          <td>
+            <% p.itens.forEach(i => { %>
+              <div>
+                <strong><%= i.lanche ? i.lanche.nome : "Lanche removido" %></strong> —
+                Qtd: <%= i.quantidade %> —
+                R$ <%= i.subtotal.toFixed(2) %>
+              </div>
+            <% }) %>
+          </td>
+
+          <td>R$ <%= p.total.toFixed(2) %></td>
+
+          <td class="status <%= p.status %>">
+            <%= p.status.charAt(0).toUpperCase() + p.status.slice(1) %>
+          </td>
+
+          <td><%= p.data.toLocaleDateString() %></td>
+
+          <td>
+            <a href="/pedido/view/<%= p._id %>" class="btn btn-view">Ver</a>
+            <a href="/pedido/edit/<%= p._id %>" class="btn btn-edit">Editar</a>
+            <a href="/pedido/delete/<%= p._id %>" 
+               onclick="return confirm('Excluir pedido definitivamente?')" 
+               class="btn btn-delete">Excluir</a>
+          </td>
+        </tr>
+      <% }) %>
+
+      <% if (pedidos.length === 0) { %>
+      <tr>
+        <td colspan="6" class="empty">Nenhum pedido encontrado.</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

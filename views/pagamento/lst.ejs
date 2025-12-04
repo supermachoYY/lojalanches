@@ -1,0 +1,23 @@
+<h1>Pagamentos</h1>
+
+<table border="1">
+  <tr>
+    <th>Pedido</th>
+    <th>Valor</th>
+    <th>Forma</th>
+    <th>Ações</th>
+  </tr>
+  <% pagamentos.forEach(p=> { %>
+    <tr>
+      <td>
+        <%= p.pedido %>
+      </td>
+      <td>R$ <%= p.valor.toFixed(2) %>
+      </td>
+      <td>
+        <%= p.forma %>
+      </td>
+      <td><a href="/pagamento/delete/<%= p._id %>">Excluir</a></td>
+    </tr>
+    <% }) %>
+</table>

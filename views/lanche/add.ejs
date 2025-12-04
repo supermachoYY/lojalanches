@@ -1,0 +1,37 @@
+<!-- views/lanche/add.ejs -->
+ <%- include('../partials/header') %>
+<div class="container mt-4">
+<h1 class="mb-4">Adicionar Lanche</h1>
+
+
+<form action="/lanche/add" method="POST" enctype="multipart/form-data" class="row g-3">
+<div class="col-md-6">
+<label class="form-label">Nome</label>
+<input type="text" name="nome" class="form-control" required>
+</div>
+
+
+<div class="col-md-3">
+<label class="form-label">Preço</label>
+<input type="number" name="preco" step="0.01" class="form-control" required>
+</div>
+
+
+</select>
+</div>
+
+
+<div class="col-md-12">
+<label class="form-label">Imagem</label>
+<input type="file" id="imagem" name="imagem" >
+</div>
+
+
+<div class="col-md-12">
+<button class="btn btn-success">Salvar</button>
+<a href="/lanche" class="btn btn-secondary">Voltar</a>
+</div>
+</form>
+</div>
+
+<%- include('../partials/footer') %>

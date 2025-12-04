@@ -1,0 +1,38 @@
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.section-title {
+  color: var(--verde-ifsul);
+  font-weight: 700;
+  margin-top: 25px;
+  border-left: 4px solid var(--verde-ifsul);
+  padding-left: 8px;
+}
+
+.dashboard-card {
+  background: var(--branco);
+  border-left: 5px solid var(--verde-ifsul);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.dashboard-card h4 {
+  font-size: 18px;
+  color: var(--verde-ifsul);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.dashboard-card .value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+}
+
+.quick-buttons a {
+  margin-right: 12px;
+  margin-top: 8px;
+}
